@@ -60,6 +60,10 @@
   top: 0;
   z-index: 20;
   background: var(--bg-base);
+  /* Escala de 4: status bar → fila del header = 8. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
 }
 
 .appheader--home {
@@ -87,10 +91,12 @@
 
 .appheader__greeting {
   font-family: var(--font-greeting);
-  font-weight: 900;
+  /* Contexto, no navegación: peso medio en gris medio. El bold queda
+     reservado para los encabezados de sección. */
+  font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
-  color: var(--text-greeting);
+  line-height: 20px;
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 
@@ -179,27 +185,40 @@
   right: 0;
   bottom: 0;
   z-index: 20;
+  display: flex;
+  flex-direction: column;
+  /* Escala de 4: fila de tabs → home indicator = 16. */
+  gap: var(--space-16);
+  /* Padding interno vertical: 12 arriba y abajo, + safe-area abajo. */
+  padding-top: var(--space-12);
+  padding-bottom: calc(var(--space-12) + env(safe-area-inset-bottom));
   background: var(--tabbar-bg);
   border-top: 1px solid var(--tabbar-border);
-  padding-bottom: max(9px, env(safe-area-inset-bottom));
 }
 
+/* 20 px de margen lateral (igual que el resto de la página); el ancho
+   restante (393 − 40 = 353) se reparte en 4 columnas idénticas de
+   88.25 px. minmax(0, 1fr) fija el ancho de columna pase lo que pase
+   con el contenido, así el pill activo crece hacia adentro y nunca
+   empuja a sus vecinos. */
 .tabbar__list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   padding-inline: var(--gutter);
 }
 
 .tabbar__item {
-  flex: 1 1 0;
+  display: flex;
   min-width: 0;
 }
 
+/* El área táctil ocupa la columna completa (≈88 × 48), no solo el icono. */
 .tabbar__link {
+  flex: 1;
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  min-height: 56px;
-  padding-top: 10px;
+  min-height: 48px;
   color: var(--tab-inactive);
 }
 
@@ -207,9 +226,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-4);
   max-width: 100%;
-  padding: 6px 4px;
   border-radius: var(--r-pill);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -222,9 +240,6 @@
 }
 
 .tabbar__label {
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 14px;
   color: currentColor;
   text-align: center;
   white-space: nowrap;
@@ -237,10 +252,6 @@
   padding: 6px 22px;
   background: var(--tab-active-pill);
   color: var(--tab-active-ink);
-}
-
-.tabbar .home-indicator {
-  margin-top: 17px;
 }
 
 /* ------------------------------ Botones --------------------------- */
@@ -392,7 +403,8 @@
 .pcard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* Escala de 4: imagen de tarjeta → nombre = 12. */
+  gap: var(--space-12);
   width: 160px;
 }
 
@@ -418,11 +430,22 @@
   bottom: 8px;
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--r-pill);
   background: var(--action-primary);
   transition: transform 0.12s ease;
+}
+
+/* Área táctil invisible de 44 × 44 centrada sobre el círculo de 36. */
+.pcard__add::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 
 .pcard__add:active {
@@ -454,27 +477,27 @@
 .pcard__info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  /* Escala de 4: nombre de producto → rating = 8. */
+  gap: var(--space-8);
 }
 
+/* Cuerpo · producto — Poppins Regular 15 / 1.45 */
 .pcard__name {
   font-family: var(--font-alt);
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 18px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.45;
   color: var(--text-primary);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 36px;
+  /* Altura fija de 2 líneas siempre, para que el rating de todas las
+     tarjetas quede en la misma línea base. */
+  height: 2.9em;
 }
 
 .pcard__rating {
-  font-family: var(--font-alt);
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 15px;
   color: var(--amber-700);
 }
 
@@ -565,12 +588,15 @@
 }
 
 /* --------------------------- Category/Item ------------------------ */
+/* Todo el conjunto disco + label es tocable (≈92 × 64), no solo el disco. */
 .category {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   width: 92px;
+  min-height: 64px;
   flex: 0 0 auto;
 }
 
@@ -679,7 +705,7 @@
 /* ------------------------------ Toast ---------------------------- */
 .toast {
   position: fixed;
-  top: calc(var(--statusbar-h) + 10px);
+  top: calc(var(--statusbar-h) + var(--space-8));
   left: 50%;
   z-index: 60;
   max-width: calc(100% - 2 * var(--gutter));

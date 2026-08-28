@@ -66,12 +66,6 @@ export default function Home() {
     return () => el.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const goToSlide = (index) => {
-    const el = slidesRef.current;
-    if (!el) return;
-    el.scrollTo({ left: index * el.clientWidth, behavior: "smooth" });
-  };
-
   return (
     <div className="home">
       <img className="home__wash" src={wash} alt="" aria-hidden="true" />
@@ -115,15 +109,13 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="hero__dots" role="tablist" aria-label="Slides">
+            {/* Indicador decorativo: el control real del carrusel es el
+               swipe / scroll horizontal. */}
+            <div className="hero__dots" aria-hidden="true">
               {heroSlides.map((slide, i) => (
-                <button
+                <span
                   key={slide.id}
-                  role="tab"
-                  aria-selected={i === activeSlide}
-                  aria-label={`Ir al slide ${i + 1}`}
                   className={`hero__dot${i === activeSlide ? " is-active" : ""}`}
-                  onClick={() => goToSlide(i)}
                 />
               ))}
             </div>

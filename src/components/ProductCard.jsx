@@ -23,7 +23,7 @@ export default function ProductCard({ product, onAdd }) {
         <Link to={`/producto/${product.id}`} className="pcard__name">
           {product.cardName}
         </Link>
-        <p className="pcard__rating">{product.cardRating}</p>
+        <p className="pcard__rating t-label-sm">{product.cardRating}</p>
         <p className="pcard__price">{formatPrice(product.price)}</p>
       </div>
     </article>

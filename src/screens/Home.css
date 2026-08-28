@@ -6,6 +6,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Escala de 4: status bar → header lo resuelve .appheader;
+     header → hero card = 24. */
+  gap: var(--space-24);
   min-height: 100%;
   background: var(--bg-base);
   /* `clip` recorta el wash decorativo sin crear un contenedor de scroll,
@@ -29,15 +32,21 @@
   position: relative;
   z-index: 1;
   flex: 1;
-  /* Figma: "Content · scroll" reserva 98 px para la tab bar. */
-  padding-bottom: calc(var(--tabbar-h) + 24px);
+  display: flex;
+  flex-direction: column;
+  /* Escala de 4: antes de un encabezado de sección = 40. Cubre
+     hero → "Explora por categoría" y fila de categorías → carrusel. */
+  gap: var(--space-40);
+  /* Reserva la altura de la tab bar fija + 24 de aire con el carrusel. */
+  padding-bottom: calc(var(--tabbar-h) + var(--space-24));
 }
 
 /* ------------------------------ Hero ------------------------------ */
 .hero {
-  padding: 9px var(--gutter) 0;
+  align-self: center;
+  width: 100%;
+  padding-inline: var(--gutter);
   max-width: var(--page-max);
-  margin-inline: auto;
 }
 
 .hero__carousel {
@@ -91,7 +100,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
+  gap: var(--space-16);
 }
 
 .hero__text {
@@ -105,12 +114,14 @@
   color: var(--text-on-primary);
 }
 
+/* Display · hero — Fraunces Bold 28 / 1.1 */
 .hero__title {
   display: flex;
   flex-direction: column;
-  font-size: 26px;
-  line-height: 30px;
-  letter-spacing: -0.26px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.28px;
   color: var(--text-on-primary);
 }
 
@@ -125,6 +136,7 @@
 }
 
 .hero__dot {
+  display: block;
   width: 6px;
   height: 6px;
   border-radius: var(--r-xs);
@@ -141,21 +153,16 @@
 .categories {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-block: 24px 0;
+  /* Escala de 4: después de un encabezado de sección = 16. */
+  gap: var(--space-16);
 }
 
 .categories__rail {
   gap: 10px;
-  padding-block: 10px 0;
   justify-content: flex-start;
 }
 
 /* ---------------------------- Favoritos --------------------------- */
-.favorites {
-  padding-block: 21px 0;
-}
-
 .favorites__rail {
   --rail-cols: 4;
   align-items: stretch;
@@ -174,10 +181,6 @@
     height: 460px;
   }
 
-  .hero {
-    padding-top: 16px;
-  }
-
   .hero__carousel {
     aspect-ratio: 16 / 9;
     max-height: 460px;
@@ -187,7 +190,6 @@
     left: 40px;
     right: 40px;
     bottom: 40px;
-    gap: 18px;
   }
 
   .hero__title {
@@ -201,17 +203,9 @@
     bottom: 24px;
   }
 
-  .categories {
-    padding-block: 32px 0;
-  }
-
   .categories__rail {
     gap: 24px;
     justify-content: flex-start;
-  }
-
-  .favorites {
-    padding-block: 28px 0;
   }
 }
 
@@ -231,7 +225,7 @@
 
   .hero__content {
     left: 56px;
-    bottom: 56px;
+    bottom: var(--space-40);
     max-width: 620px;
   }
 
@@ -243,7 +237,7 @@
 
   .hero__dots {
     right: 56px;
-    bottom: 32px;
+    bottom: var(--space-24);
   }
 
   .categories__rail {
@@ -257,10 +251,6 @@
   .category__disc {
     width: 64px;
     height: 64px;
-  }
-
-  .category__label {
-    font-size: 13px;
   }
 
   .favorites__rail {

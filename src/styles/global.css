@@ -77,30 +77,30 @@ ul {
   font-variation-settings: var(--display-axes);
 }
 
-/* overline — Poppins Medium 11 / 15 / +8% tracking */
+/* Overline — Poppins SemiBold 12 / tracking 0.1em */
 .t-overline {
   font-family: var(--font-alt);
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 15px;
-  letter-spacing: 0.88px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
 }
 
-/* heading/sm — Poppins SemiBold 17 / 24 / -0.5 */
+/* Sección — Poppins SemiBold 20 / 1.25 */
 .t-heading-sm {
   font-family: var(--font-alt);
   font-weight: 600;
-  font-size: 17px;
-  line-height: 24px;
-  letter-spacing: -0.085px;
+  font-size: 20px;
+  line-height: 1.25;
 }
 
-/* label/sm — Poppins Medium 12 / 16 */
+/* Etiqueta · caption — Poppins Medium 12 / 1.35. Único tamaño para
+   labels de categoría, rating y labels de tab (mismo rol). */
 .t-label-sm {
   font-family: var(--font-alt);
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 1.35;
 }
 
 /* button/md — Poppins SemiBold 15 / 20 */

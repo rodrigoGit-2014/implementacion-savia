@@ -66,7 +66,7 @@ export default function TabBar({ activeId = "inicio", onSelect }) {
               >
                 <span className="tabbar__inner">
                   <TabIcon name={tab.id} />
-                  <span className="tabbar__label">{tab.label}</span>
+                  <span className="tabbar__label t-label-sm">{tab.label}</span>
                 </span>
               </button>
             </li>

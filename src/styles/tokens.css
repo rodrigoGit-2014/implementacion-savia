@@ -58,6 +58,14 @@
   --font-greeting: "Inter", "Helvetica Neue", Arial, sans-serif;
   --display-axes: "SOFT" 0, "WONK" 1;
 
+  /* ---- Espaciado · escala base 4 (única fuente para el ritmo vertical) ---- */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-40: 40px;
+
   /* ---- Radios ---- */
   --r-xs: 3px;
   --r-sm: 12px;
@@ -87,7 +95,7 @@
   --frame-max: 430px;      /* ancho máximo de la composición mobile */
   --statusbar-h: 47px;
   --header-h: 52px;
-  --tabbar-h: 98px;
+  --tabbar-h: 102px;       /* alto real de la tab bar (1 borde + 12 + 56 + 16 + 5 + 12) */
 }
 
 @media (min-width: 768px) {

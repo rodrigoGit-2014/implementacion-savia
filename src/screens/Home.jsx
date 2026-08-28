@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
 import TabBar from "../components/TabBar";
+import Toast from "../components/Toast";
+import SkeletonSection from "../components/SkeletonSection";
 import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
 import CategoryItem from "../components/CategoryItem";
@@ -21,6 +23,32 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState("cabello");
   const slidesRef = useRef(null);
+
+  /* Secciones aún no construidas: al tocarlas mostramos un toast efímero
+     y dejamos el área principal en estado de carga (skeletons). La tab
+     bar permanece fija e interactiva para volver a "Inicio". */
+  const [section, setSection] = useState("inicio");
+  const [toastOpen, setToastOpen] = useState(false);
+  const toastTimer = useRef(null);
+
+  const handleTab = useCallback((id) => {
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    if (id === "inicio") {
+      setSection("inicio");
+      setToastOpen(false);
+      return;
+    }
+    setSection(id);
+    setToastOpen(true);
+    toastTimer.current = setTimeout(() => setToastOpen(false), 3000);
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    },
+    [],
+  );
 
   /* La paginación del hero refleja el slide visible del carrusel
      (Figma: "Paginación", dot activo de 14 × 6). */
@@ -50,7 +78,13 @@ export default function Home() {
 
       <AppHeader variant="home" />
 
+      <Toast message="Próximamente disponible" open={toastOpen} />
+
       <main className="home__main">
+        {section !== "inicio" ? (
+          <SkeletonSection />
+        ) : (
+          <>
         {/* --------------------------- Hero (1:90) --------------------------- */}
         <section className="hero" aria-label="Destacados">
           <div className="hero__carousel">
@@ -125,9 +159,13 @@ export default function Home() {
             ))}
           </div>
         </section>
+          </>
+        )}
       </main>
 
-      <TabBar />
+      {/* "Inicio" permanece como item activo: las otras secciones aún no
+         están disponibles, solo muestran el aviso + estado de carga. */}
+      <TabBar activeId="inicio" onSelect={handleTab} />
     </div>
   );
 }

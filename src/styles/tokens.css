@@ -35,15 +35,21 @@
   --clay-50: #fbf1ea;
   --accent-subtle: #f6e3d8;
 
+  /* ---- Color · estado de carga ---- */
+  --skeleton-bg: #e6e1d7;
+  --skeleton-sheen: rgba(255, 255, 255, 0.55);
+
   /* ---- Color · bordes ---- */
   --border-subtle: #e7ddcc;
   --border-strong: #d6c9b4;
   --border-stepper: #c8c0b2;
 
   /* ---- Color · tab bar ---- */
-  --tabbar-bg: #f5dfb1;
-  --tab-active: #3d5a46;
-  --tab-inactive: #6e6559;
+  --tabbar-bg: #faf5e8;
+  --tabbar-border: #dcd0c0;
+  --tab-inactive: #7a6e60;
+  --tab-active-pill: #3a5a40;
+  --tab-active-ink: #ffffff;
 
   /* ---- Tipografía ---- */
   --font-display: "Fraunces", "Times New Roman", serif;

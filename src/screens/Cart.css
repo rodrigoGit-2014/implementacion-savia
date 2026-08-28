@@ -1,0 +1,508 @@
+/* ==================================================================
+   04 · Carrito  (Figma 118:628)
+   ================================================================== */
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg-base);
+}
+
+.cart__main {
+  flex: 1;
+  padding-bottom: 132px; /* alto de la barra Pagar + aire */
+}
+
+.cart__block {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-block: 6px;
+  width: 100%;
+}
+
+/* ------------- Pasos · Inicio · Carro · Pago (118:739) ------------ */
+.steps-bar {
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.steps-bar__inner {
+  display: flex;
+  justify-content: center;
+  height: 64px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+.stepdot {
+  position: relative;
+  flex: 0 0 120.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding-top: 9px;
+}
+
+/* Línea conectora: del borde del hito anterior al del actual. */
+.stepdot__line {
+  position: absolute;
+  top: 21px;
+  left: calc(-50% + 13px);
+  width: calc(100% - 26px);
+  height: 2px;
+  background: var(--border-subtle);
+}
+
+.stepdot__line.is-done {
+  background: var(--action-primary);
+}
+
+.stepdot__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  font-weight: 700;
+  font-size: 12.5px;
+}
+
+.stepdot--done .stepdot__mark,
+.stepdot--current .stepdot__mark {
+  background: var(--action-primary);
+  color: #fff;
+}
+
+/* "Halo · paso actual" (118:745): asset exportado de 38 px. */
+.stepdot__halo {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 38px;
+}
+
+.stepdot--pending .stepdot__mark {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
+}
+
+.stepdot__label {
+  font-weight: 600;
+  font-size: 11.5px;
+  line-height: 15px;
+  color: var(--text-secondary);
+}
+
+.stepdot--current .stepdot__label {
+  font-weight: 700;
+  color: var(--action-primary);
+}
+
+.stepdot--pending .stepdot__label {
+  color: var(--text-muted);
+}
+
+/* ------------------ Card · dirección de envío (118:640) ----------- */
+.address-card {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  column-gap: 8px;
+  row-gap: 1px;
+  padding: 15px 15px 9px;
+  border-radius: var(--r-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.address-card__pin {
+  grid-column: 1;
+  grid-row: 1;
+  margin-top: 1px;
+}
+
+.address-card__label {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+}
+
+.address-card__street {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--text-primary);
+}
+
+.address-card__district {
+  grid-column: 2;
+  grid-row: 3;
+  font-weight: 400;
+  font-size: 12.5px;
+  line-height: 17px;
+  color: var(--text-secondary);
+}
+
+.address-card__eta {
+  grid-column: 2;
+  grid-row: 4;
+  margin-top: 2px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--success-600);
+}
+
+.address-card__change {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: start;
+  /* Figma: Button/Ghost/Cambiar mide exactamente 72 × 30. */
+  min-width: 72px;
+  padding-inline: 8px;
+}
+
+/* --------------------------- Items (118:650) ---------------------- */
+.cart__items {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.lineitem {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto;
+  column-gap: 12px;
+  align-items: start;
+  padding-block: 20px 12px;
+}
+
+.lineitem__photo {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--clay-50);
+}
+
+.lineitem__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lineitem__name {
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 2px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 19px;
+  color: var(--text-primary);
+}
+
+.lineitem__variant {
+  grid-column: 2;
+  grid-row: 2;
+  font-weight: 400;
+  font-size: 12.5px;
+  line-height: 17px;
+  color: var(--text-secondary);
+}
+
+.lineitem__stepper {
+  grid-column: 2;
+  grid-row: 3;
+  padding-top: 6px;
+}
+
+.lineitem__price {
+  grid-column: 3;
+  grid-row: 3;
+  align-self: end;
+  padding-bottom: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.lineitem__remove {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -12px -13px 0 0;
+  border-radius: var(--r-pill);
+}
+
+/* ------------------------- Cupón (118:677) ------------------------ */
+.coupon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 50px;
+  padding-inline: 15px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-sm);
+  text-align: left;
+}
+
+.coupon__text {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--text-primary);
+}
+
+.coupon__chevron {
+  margin-left: auto;
+}
+
+/* -------------------- Card · totalizador (118:685) ---------------- */
+.summary {
+  padding: 17px;
+  border-radius: var(--r-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.summary__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 3px;
+}
+
+.summary__label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-secondary);
+}
+
+.summary__value {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.summary__value--free {
+  font-weight: 700;
+  color: var(--success-600);
+}
+
+.summary__value--muted {
+  color: var(--text-muted);
+}
+
+.summary__divider {
+  height: 1px;
+  border: 0;
+  background: var(--border-subtle);
+  margin: 11px 0 8px;
+}
+
+.summary__total-label {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+  color: var(--text-primary);
+}
+
+.summary__total-value {
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 30px;
+  letter-spacing: -0.23px;
+  color: var(--text-primary);
+}
+
+.summary__note {
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 16px;
+  color: var(--text-muted);
+}
+
+/* --------------------- Nota packaging (118:696) ------------------- */
+.packaging {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-block: 16px;
+  width: 100%;
+}
+
+.packaging__text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--text-secondary);
+}
+
+/* ---------------- Carrusel · sugeridos (118:701) ------------------ */
+.suggested {
+  padding-block: 8px 24px;
+}
+
+.suggested__head {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-bottom: 20px;
+}
+
+.suggested__rail {
+  --rail-cols: 3;
+}
+
+/* --------------------- Sticky · Pagar (118:754) ------------------- */
+.paybar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sticky);
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.paybar__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-top: 18px;
+}
+
+.paybar__total {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.paybar__label {
+  font-weight: 400;
+  font-size: 12.5px;
+  line-height: 16px;
+  color: var(--text-secondary);
+}
+
+.paybar__amount {
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 28px;
+  letter-spacing: -0.23px;
+  color: var(--text-primary);
+}
+
+.paybar__cta {
+  flex: 0 1 198px;
+  min-width: 140px;
+}
+
+.paybar__trust {
+  margin-top: 6px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--text-muted);
+}
+
+.paybar .home-indicator {
+  margin-top: 5px;
+}
+
+/* ==================================================================
+   Responsive
+   ================================================================== */
+
+@media (min-width: 768px) {
+  .suggested__rail {
+    --rail-cols: 3;
+  }
+
+  .lineitem {
+    grid-template-columns: 104px minmax(0, 1fr) auto;
+    column-gap: 20px;
+  }
+
+  .lineitem__photo {
+    width: 104px;
+    height: 104px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Bolsa a la izquierda, resumen a la derecha. Los bloques conservan
+     su composición; sólo cambia su distribución en el ancho. */
+  .cart__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.85fr);
+    column-gap: 48px;
+    align-items: start;
+    padding-top: 8px;
+  }
+
+  .cart__col-main,
+  .cart__col-side {
+    min-width: 0;
+  }
+
+  .cart__col-side {
+    position: sticky;
+    top: 132px;
+  }
+
+  .cart__block,
+  .cart__items,
+  .packaging {
+    padding-inline: 0;
+  }
+
+  .cart__col-main > .cart__block:first-child {
+    padding-top: 0;
+  }
+
+  .cart__layout {
+    padding-inline: var(--gutter);
+  }
+
+  .cart__main {
+    padding-bottom: 150px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .suggested__rail {
+    --rail-cols: 3;
+  }
+}

@@ -1,0 +1,200 @@
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ------------------------------------------------------------------
+   Escalas tipográficas del sistema (Figma)
+   ------------------------------------------------------------------ */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variation-settings: var(--display-axes);
+}
+
+/* overline — Poppins Medium 11 / 15 / +8% tracking */
+.t-overline {
+  font-family: var(--font-alt);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: 0.88px;
+}
+
+/* heading/sm — Poppins SemiBold 17 / 24 / -0.5 */
+.t-heading-sm {
+  font-family: var(--font-alt);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: -0.085px;
+}
+
+/* label/sm — Poppins Medium 12 / 16 */
+.t-label-sm {
+  font-family: var(--font-alt);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* button/md — Poppins SemiBold 15 / 20 */
+.t-button-md {
+  font-family: var(--font-alt);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+/* ------------------------------------------------------------------
+   Estructura de página
+   ------------------------------------------------------------------ */
+.app {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+}
+
+.app > * {
+  flex: 1 1 auto;
+}
+
+/* Contenedor que reproduce la composición del frame de 393 px en mobile
+   y aprovecha el ancho disponible en tablet/desktop. */
+.shell {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+.gutter {
+  padding-inline: var(--gutter);
+}
+
+/* Rail horizontal (carruseles de Figma). Scroll interno propio:
+   nunca provoca scroll horizontal en el body. */
+.rail {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-inline: var(--gutter);
+  padding-block: 2px;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail > * {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+}
+
+/* En pantallas anchas el rail se convierte en grilla: mismo componente,
+   el espacio disponible se aprovecha sin recortar tarjetas. */
+@media (min-width: 900px) {
+  .rail--grid {
+    display: grid;
+    grid-template-columns: repeat(var(--rail-cols, 4), minmax(0, 1fr));
+    overflow: visible;
+  }
+
+  .rail--grid > * {
+    width: auto !important;
+    min-width: 0;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

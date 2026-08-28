@@ -1,0 +1,705 @@
+/* ==================================================================
+   02 · Pdp  (Figma 41:122)
+   ================================================================== */
+
+.pdp {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg-base);
+}
+
+/* --------------------- Dirección de envío (41:298) ---------------- */
+.pdp__address {
+  display: block;
+  width: 100%;
+  height: 44px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.pdp__address-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+.pdp__address-label {
+  font-weight: 400;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.pdp__address-value {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.pdp__address-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.pdp__main {
+  flex: 1;
+  /* Figma: "Spacer · CTA" (41:283) reserva 96 px bajo el contenido
+     para la barra de compra. */
+  padding-bottom: 96px;
+}
+
+.pdp__banner {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-block: 6px;
+}
+
+.pdp__layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.pdp__info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------- Galería (41:136) ----------------------- */
+.gallery {
+  padding-block: 8px 16px;
+}
+
+.gallery__stage {
+  position: relative;
+  margin-inline: var(--gutter);
+  border-radius: var(--r-3xl);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--clay-50);
+}
+
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* "Contador" (41:138) */
+.gallery__counter {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  min-width: 46px;
+  height: 26px;
+  padding-inline: 8px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.gallery__thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  padding-inline: var(--gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.gallery__thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery__thumb {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  opacity: 0.72;
+  transition: opacity 0.15s ease;
+}
+
+.gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery__thumb.is-active {
+  border: 2px solid var(--action-primary);
+  opacity: 1;
+}
+
+/* ------------------------ Identidad (41:145) ---------------------- */
+.identity {
+  display: flex;
+  flex-direction: column;
+  padding-block: 16px 14px;
+}
+
+.identity__overline {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.88px;
+  color: var(--text-accent);
+}
+
+.identity__name {
+  margin-top: 8px;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: -0.39px;
+  color: var(--text-primary);
+}
+
+.identity__subtitle {
+  margin-top: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-secondary);
+}
+
+.identity__rating {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.identity__score {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--text-primary);
+}
+
+.identity__reviews {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--text-secondary);
+}
+
+/* ------------- Sticky · Agregar a la bolsa (41:307) --------------- */
+.buybar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sticky);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.buybar__inner {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 96px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+.buybar__price {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-right: -13px; /* Figma: el stepper arranca pegado al precio */
+}
+
+.buybar__total {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: -0.21px;
+  color: var(--text-primary);
+}
+
+.buybar__detail {
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 15px;
+  color: var(--text-secondary);
+}
+
+.buybar__cta {
+  flex: 0 0 auto;
+  min-width: 120px;
+}
+
+/* En teléfonos angostos la barra pasa a dos filas: se conservan los
+   tres elementos y sus medidas, sólo cambia su distribución. */
+@media (max-width: 379px) {
+  .buybar__inner {
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding-block: 14px;
+  }
+
+  .buybar__price {
+    flex: 1 0 100%;
+    margin-right: 0;
+  }
+
+  .buybar__cta {
+    flex: 1 1 auto;
+  }
+}
+
+/* -------------------------- Formato (41:160) ---------------------- */
+.format {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-block: 18px 2px;
+}
+
+.format__label {
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 18px;
+  color: var(--text-primary);
+}
+
+.format__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 84px;
+  padding: 14px 12px;
+  border-radius: var(--r-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  text-align: center;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.chip.is-active {
+  background: var(--pill-active);
+  border: 2.5px solid var(--action-primary);
+}
+
+.chip__size {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+.chip.is-active .chip__size {
+  font-weight: 700;
+}
+
+.chip__price {
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 18px;
+  color: var(--text-secondary);
+}
+
+.chip__badge {
+  font-weight: 700;
+  font-size: 9.5px;
+  line-height: 18px;
+  letter-spacing: 0.19px;
+  color: var(--text-accent);
+}
+
+/* --------------------- Detalle · acordeón (103:57) ---------------- */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  padding-block: 8px 16px;
+}
+
+.accordion__row {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.accordion__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 58px;
+  width: 100%;
+  text-align: left;
+}
+
+.accordion__title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.accordion__trigger {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.accordion__trigger--disc {
+  border-radius: var(--r-pill);
+  background: var(--pill-active);
+}
+
+.accordion__chevron {
+  transition: transform 0.2s ease;
+}
+
+.accordion__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.accordion__panel {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accordion__body {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--text-primary);
+}
+
+.accordion__heading {
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+  color: var(--text-primary);
+}
+
+/* Claims (41:187–41:195) */
+.claims {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.claims__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--text-primary);
+}
+
+.claims__item img {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Pasos del modo de uso (41:198–41:206) */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.steps__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.steps__num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: var(--pill-active);
+  color: var(--action-primary);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.steps__text {
+  padding-top: 4px;
+  font-weight: 400;
+  font-size: 14.5px;
+  line-height: 21px;
+  color: var(--text-primary);
+}
+
+/* Ingredientes clave (41:209–41:237) */
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ingredient {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: 12px;
+  row-gap: 2px;
+  align-items: start;
+}
+
+.ingredient__disc {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-3xl);
+  background: var(--pill-active);
+}
+
+.ingredient__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 3px;
+}
+
+.ingredient__name {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+.ingredient__pct {
+  min-width: 38px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--accent-subtle);
+  color: var(--text-accent);
+  font-weight: 600;
+  font-size: 10.5px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.ingredient__role {
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 19px;
+  color: var(--text-secondary);
+}
+
+.ingredients__link {
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 18px;
+  color: var(--action-primary);
+}
+
+/* -------------------------- Reseñas (41:255) ---------------------- */
+.reviews {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-block: 18px 24px;
+}
+
+.reviews__summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.reviews__score {
+  font-size: 38px;
+  line-height: 44px;
+  letter-spacing: -0.76px;
+  color: var(--text-primary);
+}
+
+.reviews__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviews__total {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--text-secondary);
+}
+
+.reviews__card {
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  background: var(--clay-50);
+}
+
+.reviews__quote {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--text-primary);
+}
+
+.reviews__author {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+}
+
+.reviews__link {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 18px;
+  color: var(--action-primary);
+}
+
+/* ------------------------ Cross-sell (41:268) --------------------- */
+.crosssell {
+  padding-block: 4px 32px;
+}
+
+.crosssell__head {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-bottom: 20px;
+}
+
+.crosssell__rail {
+  --rail-cols: 2;
+}
+
+/* ==================================================================
+   Responsive
+   ================================================================== */
+
+@media (min-width: 768px) {
+  .gallery__stage {
+    max-width: 560px;
+  }
+
+  .gallery__thumb {
+    width: 88px;
+    height: 88px;
+  }
+
+  .identity__name {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .crosssell__rail {
+    --rail-cols: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Galería a la izquierda, información a la derecha: se aprovecha el
+     ancho sin alterar el orden ni la composición de cada bloque. */
+  .pdp__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 48px;
+    align-items: start;
+    padding-top: 8px;
+  }
+
+  .gallery {
+    position: sticky;
+    top: 116px;
+    padding-block: 0;
+  }
+
+  .gallery__stage {
+    max-width: none;
+    margin-inline: var(--gutter) 0;
+  }
+
+  .gallery__thumbs {
+    padding-inline: var(--gutter) 0;
+  }
+
+  .pdp__info {
+    padding-right: var(--gutter);
+  }
+
+  .identity {
+    padding-inline: 0;
+    padding-top: 0;
+  }
+
+  .identity__name {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  /* En desktop la barra de compra vive en la columna de información:
+     mantiene su tarjeta y su sombra, sin fijarse al borde inferior. */
+  .buybar {
+    position: static;
+    left: auto;
+    right: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+    margin-block: 8px 4px;
+  }
+
+  .buybar__inner {
+    padding-inline: 20px;
+    min-height: 96px;
+  }
+
+  .format,
+  .accordion__row {
+    padding-inline: 0;
+  }
+
+  .reviews {
+    padding-block: 40px 8px;
+  }
+
+  .pdp__main {
+    padding-bottom: 0;
+  }
+
+  .crosssell {
+    padding-bottom: 56px;
+  }
+
+  .crosssell__rail {
+    --rail-cols: 4;
+  }
+}

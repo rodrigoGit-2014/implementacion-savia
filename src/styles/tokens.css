@@ -1,0 +1,97 @@
+/* ------------------------------------------------------------------
+   SAVIA · Design tokens
+   Fuente de verdad: Figma "Untitled" (TuB4FHMvMz1jxhAes9NeCF)
+   Extraídos con get_variable_defs + get_design_context.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* ---- Color · superficies ---- */
+  --bg-base: #f9f8f6;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f4ede2;
+
+  /* ---- Color · texto ---- */
+  --text-primary: #1f2e24;
+  --text-secondary: #6e6559;
+  --text-muted: #a79c8b;
+  --text-accent: #8c4a2f;
+  --text-on-primary: #ffffff;
+  --text-greeting: #0b0702;
+
+  /* ---- Color · marca / acción ---- */
+  --action-primary: #3a5a40;
+  --accent-solid: #a85433;
+  --success-600: #2e6b45;
+  --amber-700: #b87d00;
+
+  /* ---- Color · verdes ---- */
+  --pill-active: #eff3ed;
+  --sage-200: #c8d8cc;
+  --sage-300: #a9c0b0;
+  --sage-900: #1f2e24;
+  --sage-ring: #a6ffc2;
+
+  /* ---- Color · tierras ---- */
+  --clay-50: #fbf1ea;
+  --accent-subtle: #f6e3d8;
+
+  /* ---- Color · bordes ---- */
+  --border-subtle: #e7ddcc;
+  --border-strong: #d6c9b4;
+  --border-stepper: #c8c0b2;
+
+  /* ---- Color · tab bar ---- */
+  --tabbar-bg: #f5dfb1;
+  --tab-active: #3d5a46;
+  --tab-inactive: #6e6559;
+
+  /* ---- Tipografía ---- */
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-ui: "Karla", "Helvetica Neue", Arial, sans-serif;
+  --font-alt: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-greeting: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --display-axes: "SOFT" 0, "WONK" 1;
+
+  /* ---- Radios ---- */
+  --r-xs: 3px;
+  --r-sm: 12px;
+  --r-md: 14px;
+  --r-lg: 16px;
+  --r-xl: 18px;
+  --r-2xl: 20px;
+  --r-3xl: 24px;
+  --r-pill: 999px;
+
+  /* ---- Sombras ---- */
+  --shadow-sticky: 0 -6px 20px -8px rgba(31, 46, 36, 0.16);
+  --shadow-card: 0 2px 10px -6px rgba(31, 46, 36, 0.14);
+
+  /* ---- Velo del hero (Figma: "Velo · gradiente") ---- */
+  --hero-veil: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.18) 18%,
+    rgba(0, 0, 0, 0.48) 42%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+
+  /* ---- Layout ---- */
+  --gutter: 20px;          /* margen lateral del frame de 393 px */
+  --page-max: 1180px;      /* ancho útil en desktop */
+  --frame-max: 430px;      /* ancho máximo de la composición mobile */
+  --statusbar-h: 47px;
+  --header-h: 52px;
+  --tabbar-h: 98px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 40px;
+  }
+}

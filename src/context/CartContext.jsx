@@ -3,11 +3,9 @@ import { products } from "../data/products";
 
 const CartContext = createContext(null);
 
-/* Estado inicial: el frame "04 · Carrito" muestra 1 × Shampoo Equilibrio
-   300 ml y el header de la PDP muestra el badge en 1. */
-const initialState = [
-  { key: "shampoo-equilibrio::300", productId: "shampoo-equilibrio", formatId: "300", qty: 1 },
-];
+/* Estado inicial: la bolsa arranca vacía en la primera visita. El contador
+   sólo refleja lo que el usuario agrega, quita o actualiza. */
+const initialState = [];
 
 function lineFor(productId, formatId) {
   return `${productId}::${formatId}`;
